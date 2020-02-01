@@ -1,0 +1,15 @@
+#Any time we are going to use docker we need sudo permissions
+sudo: required
+#This tells Travis cli that we need docker to be pre-installed
+services: 
+    - docker
+
+#This is going to execute a series of commands before running
+#our tests
+before_install:
+    - docker build -t anvsunil/docker-react -f Dockerfile.dev .
+
+# The script command will actually contain the list of commands
+# for testing
+script:
+    - docker run anvsunil/docker-react npm run test -- --coverage
