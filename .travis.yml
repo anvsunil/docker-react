@@ -12,4 +12,4 @@ before_install:
 # The script command will actually contain the list of commands
 # for testing
 script:
-    - docker run anvsunil/docker-react npm run test -- --coverage
+    - docker run -e CI=true anvsunil/docker-react npm run test -- --coverage
