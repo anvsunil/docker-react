@@ -11,6 +11,7 @@ RUN npm run build
 FROM nginx
 #We do not have to use "as" like previous block because FROM indicates
 #termination of previous block
+EXPOSE 80
 COPY --from=builder /app/build  /usr/share/nginx/html
 #If you want to host simple static content as per nginx documentation
 #use the folder /usr/share/nginx/html

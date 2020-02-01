@@ -13,3 +13,21 @@ before_install:
 # for testing
 script:
     - docker run -e CI=true anvsunil/docker-react npm run test -- --coverage
+
+deploy:
+    edge: true
+    provider: elasticbeanstalk
+    region: "us-west-2"
+    #app is the name of the given EBS  
+    app: "docker"
+    env: "Docker-env"
+    #bucket name is the name of the S3 bucket that was automatically created
+    bucket_name: "elasticbeanstalk-us-west-2-264024450650"
+    #bucket path should be same as app name
+    bucket_path: "docker"
+    on: 
+        #Only when changes are pushed to master then only deploy
+        branch: "master"
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+
